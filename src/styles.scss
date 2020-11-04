@@ -1,1 +1,23 @@
 /* You can add global styles to this file, and also import other style files */
+@import "~bootstrap/scss/bootstrap";
+
+img {
+  max-width: 100%;
+  &.width--30 {
+    max-width: 30%;
+  }
+  &.width--40 {
+    max-width: 40%;
+  }
+  &.width--50 {
+    max-width: 50%;
+  }
+}
+
+.active {
+  background-color: #39ae64 !important;
+}
+.reset-link {
+  text-decoration: none;
+  cursor: pointer;
+}
