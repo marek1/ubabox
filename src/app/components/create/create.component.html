@@ -1,49 +1,131 @@
 <div class="m-5">
-   <ng-container *ngIf="!selectedBox; else showSelectedBox">
-      <div class="d-flex justify-content-center">
-        <h5>
-          Welche Box soll es sein?
-        </h5>
-      </div>
-      <div class="d-flex justify-content-center">
-        <div class="btn-group" role="group" aria-label="Box" *ngFor="let box of boxes">
-          <button
-          type="button"
-          class="btn btn-secondary"
-          [ngClass]="{'active': selectedBox === box}"
-          (click)="selectedBox = box"
-          [title]="box.name">{{box.short}}</button>
+  <ng-container *ngIf="!selectedBox; else showSelectedBox">
+    <div class="d-flex justify-content-center">
+      <h5>
+        Welche Box soll es sein?
+      </h5>
+    </div>
+    <div class="overflow-auto">
+      <div class="box" *ngFor="let box of boxes">
+        <div
+        class="card clickable"
+        [ngClass]="{'active': selectedBox === box}"
+        (click)="selectBox(box)"
+        [title]="box.name">
+      
+          <img class="card-img-top" src="assets/{{box.thumb}}" alt="Card image cap">
+          <div class="card-body">
+        
+            <h5 class="card-title">{{box.name}}</h5>
+            <p class="card-text">
+              {{box.description}}
+            </p>
+      
+          </div>
         </div>
       </div>
-   </ng-container>
-   <ng-template #showSelectedBox>
-     <div class="d-flex justify-content-center">
-       <h1 (click)="selectedBox = null">
-         {{selectedBox.name}}
-       </h1>
-       <span class="m-1 btn-link reset-link" (click)="selectedBox = null">x</span>
-     </div>
-   </ng-template>
+    </div>
+  
+  </ng-container>
+  <ng-template #showSelectedBox>
+    <div class="d-flex justify-content-center">
+      <h1 (click)="selectedBox = null">
+        {{selectedBox.name}}
+      </h1>
+      <span class="m-1 btn-link reset-link" (click)="selectBox()">ändern</span>
+    </div>
+  </ng-template>
 </div>
 
-<div class="m-5" *ngIf="selectedBox">
-  <div class="d-flex justify-content-center">
-    <h5>
-      Wieviel willst du ausgeben ?
-    </h5>
-  </div>
-  <div class="d-flex justify-content-center">
-    <div class="btn-group" role="group" aria-label="Preis" *ngFor="let price of prices">
-      <button
-      type="button"
-      class="btn btn-secondary"
-      [ngClass]="{'active': selectedPrice === price}"
-      (click)="selectedPrice = price">{{price}} EURO</button>
+<div class="m-5" *ngIf="selectedBox && selectedPrice">
+  <div class="text-center">
+    <div>
+      {{selectedBox.description}}
     </div>
+    <!-- <img src="assets/{{selectedBox.thumb}}"> -->
   </div>
 </div>
+
+<div class="text-center" *ngIf="selectedBox">
+  
+  <div *ngIf="getSelectedNumberOfProducts() >= selectedBox.minNumberProducts; else chooseProducts">
+    <p>
+      <a type="button" class="btn btn-primary" [routerLink]="['/' + ROUTE_CART]">Bezahlen</a>
+    </p>
+  </div>
+  <ng-template #chooseProducts>
+    <h6>Bitte wählen Sie weitere Produkte</h6>
+  </ng-template>
+</div>
+
 <div class="m-5" *ngIf="selectedBox && selectedPrice">
-  <div class="d-flex justify-content-center">
-      <img src="assets/open.png" class="width--{{selectedPrice}}">
+  <div class="text-center">
+    Ausgewählte Produkte
+    <div class="overflow-auto">
+      <div class="box" *ngFor="let product of selectedBox.fixedProducts">
+        <div
+        class="card selected">
+          <img class="card-img-top" src="assets/{{product.thumb}}" alt="Card image cap">
+          <div class="card-body">
+    
+            <h5 class="card-title">{{product.name}}</h5>
+            <p class="card-text">
+              {{product.description}}
+            </p>
+  
+          </div>
+        </div>
+      </div>
+      <div class="box" *ngFor="let product of selectedBox.flexProducts">
+        <div
+        class="card"
+        [ngClass]="{'selected': isSelectedProduct(product), 'unavailable': isNotWithInBudget(product)}"
+        (click)="addToBox(product)">
+          <img class="card-img-top" src="assets/{{product.thumb}}" alt="Card image cap">
+          <div class="card-body">
+            <h5 class="card-title">{{product.name}}</h5>
+            <p class="card-text">
+              {{product.description}}
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="box">
+        <div
+        class="card selected">
+          <div class="card-body">
+            <img class="card-img-top" src="{{donationProject.thumb}}" alt="Card image cap">
+            <h5 class="card-title">Spende</h5>
+            <p class="card-text">
+              {{calculateDonation()}} EURO
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+  </div>
+</div>
+
+
+<!-- Modal -->
+<div class="modal-backdrop fade" [ngClass]="{'show': modalOpened}"></div>
+<div class="modal fade" [ngClass]="{'show': modalOpened}" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Fertig</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="modalOpened=!modalOpened">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Du hast eine gute Wahl getroffen
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="modalOpened=!modalOpened">Änderungen vornehmen</button>
+        <a type="button" class="btn btn-primary" [routerLink]="['/' + ROUTE_CART]">Bezahlen</a>
+      </div>
+    </div>
   </div>
 </div>

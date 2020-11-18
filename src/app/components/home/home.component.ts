@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { BoxNames } from '../../data/boxNames';
 import { ROUTE_CREATE_BOX } from '../../routes';
+import { DonationProject } from '../../data/donationProject';
 
 @Component({
   selector: 'app-home',
@@ -11,6 +12,8 @@ import { ROUTE_CREATE_BOX } from '../../routes';
 export class HomeComponent implements OnInit {
 
   public boxNames = BoxNames;
+  public donationProject = DonationProject;
+
   constructor(public router: Router) { }
 
   ngOnInit() {
@@ -19,6 +22,7 @@ export class HomeComponent implements OnInit {
   goToPage(x?: string) {
     if (x === undefined) {
       this.router.navigate([ROUTE_CREATE_BOX]);
+      return;
     }
     this.router.navigate([ROUTE_CREATE_BOX, x]);
   }

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ROUTE_CART } from '../../routes';
 
 @Component({
   selector: 'app-nav',
@@ -7,6 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavComponent implements OnInit {
 
+  public ROUTE_CART = ROUTE_CART;
   constructor() { }
 
   ngOnInit() {

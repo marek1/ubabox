@@ -1,6 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
@@ -8,8 +7,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { CartComponent } from './components/cart/cart.component';
 import { CreateComponent } from './components/create/create.component';
 import { NavComponent } from './components/nav/nav.component';
-
-
+import { PaypalComponent } from './components/paypal/paypal.component';
 
 @NgModule({
   declarations: [
@@ -18,11 +16,12 @@ import { NavComponent } from './components/nav/nav.component';
     FooterComponent,
     CartComponent,
     CreateComponent,
-    NavComponent
+    NavComponent,
+    PaypalComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
