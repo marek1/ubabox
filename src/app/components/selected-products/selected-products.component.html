@@ -1,0 +1,29 @@
+<div class="open-box mt-5">
+  <div class="text-center" *ngIf="cartService.products as products">
+    <div *ngIf="products.length > 0; else noProducts">
+      Deine Box enthält:
+      <div class="text-center" *ngFor="let product of products">
+        <img src="assets/{{product.thumb}}"> {{product.name}}
+      </div>
+      <div class="text-center">
+        <img src="assets/{{donationProject.thumb}}">{{cartService.calculateDonation()}} EUR Spende
+      </div>
+      <div>
+        <a class="btn btn-primary" [routerLink]="['/box-gestalten/' + cartService.selectedBox.short]">
+          Ändern
+        </a>
+      </div>
+    </div>
+    <ng-template #noProducts>
+      Deine Box ist leer
+      <div>
+        <a class="btn btn-primary" [routerLink]="['/box-gestalten']">
+          Jetzt zusammenstellen.
+        </a>
+      </div>
+      
+    </ng-template>
+    
+  </div>
+  
+</div>

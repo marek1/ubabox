@@ -5,6 +5,7 @@ import { ActivatedRoute, Route, Router } from '@angular/router';
 import { Product, Products } from '../../data/products';
 import { ROUTE_CART, ROUTE_CREATE_BOX } from '../../routes';
 import { DonationProject } from '../../data/donationProject';
+import { CartService } from '../../service/cart.service';
 
 @Component({
   selector: 'app-create',
@@ -16,21 +17,24 @@ export class CreateComponent implements OnInit {
   public ROUTE_CART = ROUTE_CART;
   public selectedPrice = 30; // set
   public boxes = BoxNames;
-  public selectedBox: BoxName|null;
   public donationProject = DonationProject;
-  public selectedProducts: Product[];
   public modalOpened = false;
-  constructor(public route: ActivatedRoute, public router: Router) {
-    this.selectedBox = null;
-    this.selectedProducts = [];
+  constructor(public route: ActivatedRoute,
+              public router: Router,
+              public cartService: CartService) {
   }
 
   ngOnInit() {
     this.route.params.subscribe((params) => {
+      console.log('params : ', params);
       if (params['id'] !== undefined) {
-        this.selectedBox = this.boxes.filter(x => x.short.toLowerCase() === params['id'].toLowerCase())[0];
-        this.selectedProducts = [];
+        const box = this.boxes.filter(x => x.short.toLowerCase() === params['id'].toLowerCase())[0];
+        console.log('box : ', box);
+        this.cartService.setSelectedBox(box);
+        // this.selectedProducts = [];
         this.modalOpened = false;
+      } else {
+        this.cartService.reset();
       }
     });
   }
@@ -45,47 +49,22 @@ export class CreateComponent implements OnInit {
 
   addToBox(product: Product) {
     this.modalOpened = false;
-    if (this.isSelectedProduct(product)) {
-      const pos = this.selectedProducts.findIndex(x => x.id === product.id);
-      this.selectedProducts.splice(pos, 1);
-    } else {
-      if (this.isNotWithInBudget(product)) {
-        return;
-      }
-      this.selectedProducts.push(product);
-      if (this.getCurrentTotal() > 20) {
-        this.modalOpened = true;
-      }
+    this.cartService.addToBox(product);
+    if (this.cartService.getCurrentTotal() > 20) {
+      this.modalOpened = true;
     }
-  }
-
-  isSelectedProduct(product: Product): boolean {
-    return this.selectedProducts.filter(x => x.id === product.id).length > 0;
   }
 
   isNotWithInBudget(product: Product): boolean {
-    return this.getCurrentTotal() + product.price > this.selectedBox.maxPrice;
-  }
-
-  getSelectedNumberOfProducts(): number {
-    if (!this.selectedBox) {
-      return this.selectedProducts.length;
-    }
-    return this.selectedBox.fixedProducts.length + this.selectedProducts.length;
+    return this.cartService.isNotWithInBudget(product);
   }
 
   getCurrentTotal(): number {
-    if (!this.selectedBox) {
-      return 0;
-    }
-    return (this.selectedBox.fixedProducts.length > 0 ?
-      this.selectedBox.fixedProducts.reduce((a, b) => a + b.price, 0) : 0) +
-      this.selectedProducts.reduce((a, b) => a + b.price, 0);
+    return this.cartService.getCurrentTotal();
   }
 
   calculateDonation(): number {
-    const diff = this.selectedBox.maxPrice - this.getCurrentTotal();
-    return this.selectedBox.maxPrice === diff || diff === 0 ? 1 : diff;
+    return this.cartService.calculateDonation();
   }
 
 }

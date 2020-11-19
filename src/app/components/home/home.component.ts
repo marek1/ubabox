@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { BoxNames } from '../../data/boxNames';
 import { ROUTE_CREATE_BOX } from '../../routes';
 import { DonationProject } from '../../data/donationProject';
+import { ShippingOptions } from '../../data/shippingOptions';
 
 @Component({
   selector: 'app-home',
@@ -13,6 +14,7 @@ export class HomeComponent implements OnInit {
 
   public boxNames = BoxNames;
   public donationProject = DonationProject;
+  public shippingOptions = ShippingOptions;
 
   constructor(public router: Router) { }
 

@@ -3,7 +3,10 @@
     <div id="opaque-header">
       <h1 class="display-4 font-weight-normal">Die Kiez-Box</h1>
       <p class="lead font-weight-normal">Die individuelle Geschenkbox für
-        <b>26,21 EUR</b> bei Abholung oder 30 EUR bei Versand</p>
+        <span *ngFor="let shippingOption of shippingOptions; let i = index">
+          <b>{{shippingOption.price.toString().replace('.', ',') }} EUR</b> bei {{shippingOption.name}}
+          <span *ngIf="i + 1 < shippingOptions.length">oder </span>
+        </span>
     </div>
     <a class="btn btn-primary" [routerLink]="['/box-gestalten/Individuell']">
       Jetzt individuell zusammenstellen.
@@ -21,6 +24,13 @@
       <h3 class="display-5">{{box.name}}</h3>
       <img src="assets/{{box.thumb}}">
       <p class="lead">{{box.description}}</p>
+      <div>
+        Preis:
+        <span *ngFor="let shippingOption of shippingOptions; let i = index">
+          <b>{{shippingOption.price.toString().replace('.', ',')}}</b> EUR bei {{shippingOption.name}}
+          <span *ngIf="i + 1 < shippingOptions.length">oder </span>
+        </span>
+      </div>
     </div>
   </div>
 </div>

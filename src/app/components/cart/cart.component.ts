@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ShippingOption, ShippingOptions } from '../../data/shippingOptions';
+import { CartService } from '../../service/cart.service';
 
 @Component({
   selector: 'app-cart',
@@ -7,9 +9,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CartComponent implements OnInit {
 
-  constructor() { }
+  public shippingOptions = ShippingOptions;
+  public selectedShippingOption: ShippingOption|null = null;
+
+  constructor(public cartService: CartService) { }
 
   ngOnInit() {
+    this.selectedShippingOption = this.shippingOptions[1];
   }
 
 }

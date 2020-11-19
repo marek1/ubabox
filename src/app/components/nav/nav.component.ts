@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ROUTE_CART } from '../../routes';
+import { CartService } from '../../service/cart.service';
 
 @Component({
   selector: 'app-nav',
@@ -9,9 +10,16 @@ import { ROUTE_CART } from '../../routes';
 export class NavComponent implements OnInit {
 
   public ROUTE_CART = ROUTE_CART;
-  constructor() { }
+  constructor(public cartService: CartService) {
+
+  }
 
   ngOnInit() {
+  }
+
+  getNumber() {
+    const lengthOfFixed = this.cartService.selectedBox ? this.cartService.selectedBox.fixedProducts.length : 0;
+    return this.cartService.products.length > 0 ? this.cartService.products.length : lengthOfFixed;
   }
 
 }

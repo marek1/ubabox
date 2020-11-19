@@ -8,6 +8,8 @@ import { CartComponent } from './components/cart/cart.component';
 import { CreateComponent } from './components/create/create.component';
 import { NavComponent } from './components/nav/nav.component';
 import { PaypalComponent } from './components/paypal/paypal.component';
+import { CartService } from './service/cart.service';
+import { SelectedProductsComponent } from './components/selected-products/selected-products.component';
 
 @NgModule({
   declarations: [
@@ -17,13 +19,14 @@ import { PaypalComponent } from './components/paypal/paypal.component';
     CartComponent,
     CreateComponent,
     NavComponent,
-    PaypalComponent
+    PaypalComponent,
+    SelectedProductsComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
   ],
-  providers: [],
+  providers: [CartService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

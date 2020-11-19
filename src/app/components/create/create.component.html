@@ -1,5 +1,5 @@
 <div class="m-5">
-  <ng-container *ngIf="!selectedBox; else showSelectedBox">
+  <ng-container *ngIf="!cartService.selectedBox; else showSelectedBox">
     <div class="d-flex justify-content-center">
       <h5>
         Welche Box soll es sein?
@@ -9,7 +9,7 @@
       <div class="box" *ngFor="let box of boxes">
         <div
         class="card clickable"
-        [ngClass]="{'active': selectedBox === box}"
+        [ngClass]="{'active': cartService.selectedBox === box}"
         (click)="selectBox(box)"
         [title]="box.name">
       
@@ -29,40 +29,26 @@
   </ng-container>
   <ng-template #showSelectedBox>
     <div class="d-flex justify-content-center">
-      <h1 (click)="selectedBox = null">
-        {{selectedBox.name}}
+      <h1 (click)="cartService.selectedBox = null">
+        {{cartService.selectedBox.name}}
       </h1>
       <span class="m-1 btn-link reset-link" (click)="selectBox()">ändern</span>
     </div>
   </ng-template>
 </div>
 
-<div class="m-5" *ngIf="selectedBox && selectedPrice">
-  <div class="text-center">
-    <div>
-      {{selectedBox.description}}
-    </div>
-    <!-- <img src="assets/{{selectedBox.thumb}}"> -->
-  </div>
-</div>
+<!--<div>-->
+<!--  <app-selected-products></app-selected-products>-->
+<!--</div>-->
 
-<div class="text-center" *ngIf="selectedBox">
-  
-  <div *ngIf="getSelectedNumberOfProducts() >= selectedBox.minNumberProducts; else chooseProducts">
-    <p>
-      <a type="button" class="btn btn-primary" [routerLink]="['/' + ROUTE_CART]">Bezahlen</a>
-    </p>
-  </div>
-  <ng-template #chooseProducts>
-    <h6>Bitte wählen Sie weitere Produkte</h6>
-  </ng-template>
-</div>
+<!--{{cartService.selectedBox | json}}-->
 
-<div class="m-5" *ngIf="selectedBox && selectedPrice">
+<div class="m-5" *ngIf="cartService.selectedBox && selectedPrice">
   <div class="text-center">
-    Ausgewählte Produkte
+    Wähle den Inhalt deiner Box
     <div class="overflow-auto">
-      <div class="box" *ngFor="let product of selectedBox.fixedProducts">
+      <div class="box"
+           *ngFor="let product of cartService.selectedBox.fixedProducts">
         <div
         class="card selected">
           <img class="card-img-top" src="assets/{{product.thumb}}" alt="Card image cap">
@@ -76,10 +62,11 @@
           </div>
         </div>
       </div>
-      <div class="box" *ngFor="let product of selectedBox.flexProducts">
+      <div class="box"
+           *ngFor="let product of cartService.selectedBox.flexProducts">
         <div
         class="card"
-        [ngClass]="{'selected': isSelectedProduct(product), 'unavailable': isNotWithInBudget(product)}"
+        [ngClass]="{'selected': cartService.isSelectedProduct(product), 'unavailable': isNotWithInBudget(product)}"
         (click)="addToBox(product)">
           <img class="card-img-top" src="assets/{{product.thumb}}" alt="Card image cap">
           <div class="card-body">
@@ -94,7 +81,7 @@
         <div
         class="card selected">
           <div class="card-body">
-            <img class="card-img-top" src="{{donationProject.thumb}}" alt="Card image cap">
+            <img class="card-img-top" src="{{donationProject.img}}" alt="Card image cap">
             <h5 class="card-title">Spende</h5>
             <p class="card-text">
               {{calculateDonation()}} EURO
@@ -103,10 +90,19 @@
         </div>
       </div>
     </div>
-    
   </div>
 </div>
 
+<div class="text-center" *ngIf="cartService.selectedBox">
+  <div *ngIf="cartService.getSelectedNumberOfProducts() >= cartService.selectedBox.minNumberProducts; else chooseProducts">
+    <p>
+      <a type="button" class="btn btn-primary" [routerLink]="['/' + ROUTE_CART]">Zum Bezahlen</a>
+    </p>
+  </div>
+  <ng-template #chooseProducts>
+    <h6>Bitte selektiere mindestens {{cartService.selectedBox.minNumberProducts}} Produkt(e)</h6>
+  </ng-template>
+</div>
 
 <!-- Modal -->
 <div class="modal-backdrop fade" [ngClass]="{'show': modalOpened}"></div>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="244px" height="219px" viewBox="0 0 244 219" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 55.2 (78181) - https://sketchapp.com -->
+    <title>Group 2</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <filter x="-5.0%" y="-5.6%" width="110.0%" height="111.2%" filterUnits="objectBoundingBox" id="filter-1">
+            <feOffset dx="0" dy="2" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="2" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.5 0" type="matrix" in="shadowBlurOuter1" result="shadowMatrixOuter1"></feColorMatrix>
+            <feMerge>
+                <feMergeNode in="shadowMatrixOuter1"></feMergeNode>
+                <feMergeNode in="SourceGraphic"></feMergeNode>
+            </feMerge>
+        </filter>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Logo4" transform="translate(-79.000000, -92.000000)" fill="#AAFF7C">
+            <g id="Group-2" filter="url(#filter-1)" transform="translate(80.000000, 93.000000)">
+                <path d="M158.577794,138.2169 C177.499496,119.095829 171.404485,44.3303275 96.4288553,45.7459215 C46.4451023,46.6896508 0.343295969,86.8271263 -41.8765636,166.158348 L128.790225,165.707883 C136.034136,160.127942 145.963326,150.964281 158.577794,138.2169 Z" id="Rectangle" transform="translate(62.895975, 105.942217) rotate(-89.000000) translate(-62.895975, -105.942217) "></path>
+                <path d="M274.79582,139.117271 C293.719155,120.384834 287.630527,47.1457863 212.654776,48.5389056 C162.670942,49.4676518 116.565709,88.789884 74.3390762,166.505602 L245.005904,166.049724 C252.250291,160.583047 262.180263,151.605563 274.79582,139.117271 Z" id="Rectangle" transform="translate(179.114030, 107.512449) scale(1, -1) rotate(89.000000) translate(-179.114030, -107.512449) "></path>
+            </g>
+        </g>
+    </g>
+</svg>
