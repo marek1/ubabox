@@ -1,26 +1,22 @@
-<div class="m-5">
+<div>
   <ng-container *ngIf="!cartService.selectedBox; else showSelectedBox">
-    <div class="d-flex justify-content-center">
+    <div class="position-relative overflow-hidden text-center">
       <h5>
         Welche Box soll es sein?
       </h5>
-    </div>
-    <div class="overflow-auto">
-      <div class="box" *ngFor="let box of boxes">
-        <div
-        class="card clickable"
-        [ngClass]="{'active': cartService.selectedBox === box}"
-        (click)="selectBox(box)"
-        [title]="box.name">
-      
-          <img class="card-img-top" src="assets/{{box.thumb}}" alt="Card image cap">
-          <div class="card-body">
-        
-            <h5 class="card-title">{{box.name}}</h5>
-            <p class="card-text">
-              {{box.description}}
-            </p>
-      
+      <div class="overflow-auto">
+        <div class="box" *ngFor="let box of boxes">
+          <div
+          class="card clickable"
+          [ngClass]="{'active': cartService.selectedBox === box}"
+          [title]="box.name">
+            <img class="card-img-top" (click)="selectBox(box)" src="assets/{{box.thumb}}" alt="Card image cap">
+            <div class="card-body">
+              <h5 class="card-title" (click)="selectBox(box)">{{box.name}}</h5>
+              <p class="card-text" (click)="selectBox(box)">
+                {{box.description}}
+              </p>
+            </div>
           </div>
         </div>
       </div>
@@ -28,24 +24,32 @@
   
   </ng-container>
   <ng-template #showSelectedBox>
-    <div class="d-flex justify-content-center">
-      <h1 (click)="cartService.selectedBox = null">
-        {{cartService.selectedBox.name}}
-      </h1>
-      <span class="m-1 btn-link reset-link" (click)="selectBox()">ändern</span>
+    <div  class="position-relative overflow-hidden text-center bg-light {{cartService.selectedBox.short}}" id="teaser-img">
+      <div class="col-md-12 p-lg-5 mx-auto my-5">
+        <div id="opaque-header">
+          <h1 (click)="cartService.selectedBox = null">
+            {{cartService.selectedBox.name}}
+          </h1>
+          <span class="m-1 btn-link reset-link" (click)="selectBox()">ändern</span>
+        </div>
+      </div>
     </div>
   </ng-template>
 </div>
 
-<!--<div>-->
-<!--  <app-selected-products></app-selected-products>-->
-<!--</div>-->
+<div class="text-center mt-3" *ngIf="cartService.selectedBox">
+  <div *ngIf="cartService.getSelectedNumberOfProducts() >= cartService.selectedBox.minNumberProducts; else chooseProducts">
+    <p>
+      <a type="button" class="btn btn-primary" [routerLink]="['/' + ROUTE_CART]">Zum Bezahlen</a>
+    </p>
+  </div>
+  <ng-template #chooseProducts>
+    <h6>Bitte selektiere mindestens {{cartService.selectedBox.minNumberProducts}} Produkt(e)</h6>
+  </ng-template>
+</div>
 
-<!--{{cartService.selectedBox | json}}-->
-
-<div class="m-5" *ngIf="cartService.selectedBox && selectedPrice">
+<div class="" *ngIf="cartService.selectedBox && selectedPrice">
   <div class="text-center">
-    Wähle den Inhalt deiner Box
     <div class="overflow-auto">
       <div class="box"
            *ngFor="let product of cartService.selectedBox.fixedProducts">
@@ -53,12 +57,13 @@
         class="card selected">
           <img class="card-img-top" src="assets/{{product.thumb}}" alt="Card image cap">
           <div class="card-body">
-    
             <h5 class="card-title">{{product.name}}</h5>
             <p class="card-text">
               {{product.description}}
             </p>
-  
+            <div *ngIf="cartService.isSelectedProduct(product)">
+              <app-product-variation [product]="product"></app-product-variation>
+            </div>
           </div>
         </div>
       </div>
@@ -66,14 +71,16 @@
            *ngFor="let product of cartService.selectedBox.flexProducts">
         <div
         class="card"
-        [ngClass]="{'selected': cartService.isSelectedProduct(product), 'unavailable': isNotWithInBudget(product)}"
-        (click)="addToBox(product)">
-          <img class="card-img-top" src="assets/{{product.thumb}}" alt="Card image cap">
+        [ngClass]="{'selected': cartService.isSelectedProduct(product), 'unavailable': isNotWithInBudget(product)}">
+          <img class="card-img-top" (click)="addToBox(product)" src="assets/{{product.thumb}}" alt="Card image cap">
           <div class="card-body">
-            <h5 class="card-title">{{product.name}}</h5>
-            <p class="card-text">
+            <h5 class="card-title" (click)="addToBox(product)">{{product.name}}</h5>
+            <p class="card-text" (click)="addToBox(product)">
               {{product.description}}
             </p>
+            <div *ngIf="cartService.isSelectedProduct(product)">
+              <app-product-variation [product]="product"></app-product-variation>
+            </div>
           </div>
         </div>
       </div>
@@ -93,7 +100,7 @@
   </div>
 </div>
 
-<div class="text-center" *ngIf="cartService.selectedBox">
+<div class="text-center mt-3" *ngIf="cartService.selectedBox">
   <div *ngIf="cartService.getSelectedNumberOfProducts() >= cartService.selectedBox.minNumberProducts; else chooseProducts">
     <p>
       <a type="button" class="btn btn-primary" [routerLink]="['/' + ROUTE_CART]">Zum Bezahlen</a>

@@ -37,8 +37,12 @@ export class CartService {
   }
 
   removeProduct(product: Product) {
-    const pos = this.products.findIndex(x => x.id === product.id);
+    const pos = this.findIndex(product.id);
     this.products.splice(pos, 1);
+  }
+
+  findIndex(id: string): number {
+    return this.products.findIndex(x => x.id === id);
   }
 
   calculateDonation() {
@@ -80,5 +84,11 @@ export class CartService {
       }
       this.addProduct(product);
     }
+  }
+
+  updateProduct(product: Product) {
+    console.log('updating product ' , this.findIndex(product.id));
+    this.products[this.findIndex(product.id)] = {...product};
+    console.log(this.products[this.findIndex(product.id)]);
   }
 }

@@ -42,7 +42,7 @@ export const BoxNames: BoxName[] = [
     fixedProducts: [
       Products.filter(x => x.id === 'Kaffee')[0], // 8
       Products.filter(x => x.id === 'Becher')[0], // 10
-      Products.filter(x => x.id === 'KleineSchokolade')[0], // 4
+      Products.filter(x => x.id === 'Schokolade')[0], // 4
     ],
     flexProducts: [],
     minPrice: 20,
@@ -61,7 +61,7 @@ export const BoxNames: BoxName[] = [
     fixedProducts: [
       Products.filter(x => x.id === 'Tee')[0], // 6
       Products.filter(x => x.id === 'Jutebeutel')[0], // 8
-      Products.filter(x => x.id === 'GrosseSchokolade')[0], // 8
+      Products.filter(x => x.id === 'Pralinenkasten')[0], // 8
     ],
     flexProducts: [],
     minPrice: 20,

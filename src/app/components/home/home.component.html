@@ -1,12 +1,13 @@
 <div id="teaser-img" class="position-relative overflow-hidden text-center bg-light">
   <div class="col-md-12 p-lg-5 mx-auto my-5" (click)="goToPage()">
     <div id="opaque-header">
-      <h1 class="display-4 font-weight-normal">Die Kiez-Box</h1>
-      <p class="lead font-weight-normal">Die individuelle Geschenkbox für
+      <h1 class="display-4 font-weight-normal">Unterstüze deinen Kiez</h1>
+      <p class="lead font-weight-normal">Mit einer Geschenkbox, die Produkte aus dem Kiez enthält. Ab
         <span *ngFor="let shippingOption of shippingOptions; let i = index">
           <b>{{shippingOption.price.toString().replace('.', ',') }} EUR</b> bei {{shippingOption.name}}
           <span *ngIf="i + 1 < shippingOptions.length">oder </span>
         </span>
+      </p>
     </div>
     <a class="btn btn-primary" [routerLink]="['/box-gestalten/Individuell']">
       Jetzt individuell zusammenstellen.
@@ -15,6 +16,9 @@
 </div>
 
 <div class="alert alert-secondary text-center mt-2 mb-2" role="alert">
+  <p>
+    Dabei hilfst du gleichzeitig auch den Bedürftigen im Kiez.
+  </p>
   <div [innerHTML]="donationProject.description"></div>
 </div>
 

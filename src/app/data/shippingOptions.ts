@@ -5,7 +5,7 @@ export interface ShippingOption {
 export const ShippingOptions: ShippingOption[] = [
   {
     name: 'Abholung',
-    price: 26.11
+    price: 26
   },
   {
     name: 'Versand mit DHL',

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Prices } from '../../data/prices';
 import { BoxName, BoxNames } from '../../data/boxNames';
 import { ActivatedRoute, Route, Router } from '@angular/router';
-import { Product, Products } from '../../data/products';
+import { Product, Products, ProductVariation } from '../../data/products';
 import { ROUTE_CART, ROUTE_CREATE_BOX } from '../../routes';
 import { DonationProject } from '../../data/donationProject';
 import { CartService } from '../../service/cart.service';
@@ -26,10 +26,8 @@ export class CreateComponent implements OnInit {
 
   ngOnInit() {
     this.route.params.subscribe((params) => {
-      console.log('params : ', params);
       if (params['id'] !== undefined) {
         const box = this.boxes.filter(x => x.short.toLowerCase() === params['id'].toLowerCase())[0];
-        console.log('box : ', box);
         this.cartService.setSelectedBox(box);
         // this.selectedProducts = [];
         this.modalOpened = false;

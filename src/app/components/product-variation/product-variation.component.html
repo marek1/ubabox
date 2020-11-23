@@ -1,0 +1,28 @@
+<div>
+  <select (change)="setSelectedProductVariation(product, $event)">
+    <option *ngIf="!product.selectedProductVariation">
+      Produktvariation wählen
+    </option>
+    <option *ngFor="let prodVar of product.productVariations"
+            [selected]="product.selectedProductVariation && product.selectedProductVariation.name === prodVar.name"
+    >{{prodVar.name}}</option>
+  </select>
+</div>
+<div *ngIf="product.selectedProductVariation as prodVar">
+  <div>
+    {{prodVar.description}}
+  </div>
+  <div>
+    <img src="assets/{{prodVar.img}}">
+  </div>
+  <div class="small" *ngIf="prodVar.producer">
+    hergestellt von
+    <span *ngIf="prodVar.producerUrl"><a href="{{prodVar.producerUrl}}" target="_blank">{{prodVar.producer}}</a></span>
+    <span *ngIf="!prodVar.producerUrl">{{prodVar.producer}}</span>
+  </div>
+  <div class="small" *ngIf="prodVar.producer">
+    verkauft von
+    <span *ngIf="prodVar.sellerUrl"><a href="{{prodVar.sellerUrl}}" target="_blank">{{prodVar.seller}}</a></span>
+    <span *ngIf="!prodVar.sellerUrl">{{prodVar.seller}}</span>
+  </div>
+</div>

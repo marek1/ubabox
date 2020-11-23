@@ -18,7 +18,7 @@
   }
   img {
     max-width: 50%;
-    margin: 0 auto;
+    margin: 10px auto;
   }
 }
 
@@ -33,6 +33,23 @@
     display: block;
   }
 }
+#teaser-img {
+  min-height: 200px;
+  background-size: cover;
+  background-position: bottom;
+
+  &.Kaffeeliebhaber {
+    background-image: url('/assets/kaffee.jpg');
+  }
+  &.Teeliebhaber {
+    background-image: url('/assets/tee.jpg');
+  }
+}
+#opaque-header {
+  background-color: white;
+  opacity: 50%;
+}
+
 
 @media (min-width: 568px) {
   .box {

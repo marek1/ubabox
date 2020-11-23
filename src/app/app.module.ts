@@ -10,6 +10,8 @@ import { NavComponent } from './components/nav/nav.component';
 import { PaypalComponent } from './components/paypal/paypal.component';
 import { CartService } from './service/cart.service';
 import { SelectedProductsComponent } from './components/selected-products/selected-products.component';
+import { AddressFormComponent } from './components/address-form/address-form.component';
+import { ProductVariationComponent } from './components/product-variation/product-variation.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +22,9 @@ import { SelectedProductsComponent } from './components/selected-products/select
     CreateComponent,
     NavComponent,
     PaypalComponent,
-    SelectedProductsComponent
+    SelectedProductsComponent,
+    AddressFormComponent,
+    ProductVariationComponent
   ],
   imports: [
     BrowserModule,
