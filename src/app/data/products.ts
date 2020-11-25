@@ -118,7 +118,7 @@ export const Products: Product[] = [
     description: 'Die Schokolade wurde in Berlin handgeschöpft.',
     img: 'schokolade_klein.png',
     thumb: 'schokolade_klein.png',
-    price: 4,
+    price: 5,
     productVariations: [
       {
         name: 'Vollmilchschokolade mit/aus Tonkabohne',
@@ -166,7 +166,7 @@ export const Products: Product[] = [
     description: 'Der Pralinenkasten aus Berlin enthält handgeschöfpfte Pralinen',
     img: 'pralinen.png',
     thumb: 'pralinen.png',
-    price: 8,
+    price: 9,
     productVariations: [
       {
         name: 'Salz-Karamell',

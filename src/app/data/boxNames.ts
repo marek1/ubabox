@@ -27,7 +27,7 @@ export const BoxNames: BoxName[] = [
     fixedProducts: [],
     flexProducts: Products,
     minPrice: 20,
-    maxPrice: 22,
+    maxPrice: 23,
     minNumberProducts: 1,
     maxNumberProducts: 3
   },
@@ -46,7 +46,7 @@ export const BoxNames: BoxName[] = [
     ],
     flexProducts: [],
     minPrice: 20,
-    maxPrice: 22,
+    maxPrice: 23,
     minNumberProducts: 1,
     maxNumberProducts: 3
   },
@@ -65,7 +65,7 @@ export const BoxNames: BoxName[] = [
     ],
     flexProducts: [],
     minPrice: 20,
-    maxPrice: 22,
+    maxPrice: 23,
     minNumberProducts: 1,
     maxNumberProducts: 3
   },

@@ -12,6 +12,7 @@ import { CartService } from './service/cart.service';
 import { SelectedProductsComponent } from './components/selected-products/selected-products.component';
 import { AddressFormComponent } from './components/address-form/address-form.component';
 import { ProductVariationComponent } from './components/product-variation/product-variation.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { ProductVariationComponent } from './components/product-variation/produc
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     AppRoutingModule,
   ],
   providers: [CartService],

@@ -1,8 +1,6 @@
 <div *ngIf="cartService.products.length > 0;">
   <div class="d-flex justify-content-center">
-    <h5>
-      Wähle eine Versandoption
-    </h5>
+  
   </div>
   <div class="d-flex justify-content-center">
     <div class="btn-group" role="group" aria-label="Preis" *ngFor="let shippingOption of shippingOptions">
@@ -13,27 +11,39 @@
       (click)="selectedShippingOption = shippingOption">{{shippingOption.name}}</button>
     </div>
   </div>
+  <div class="text-center">
+    <ng-container *ngIf="selectedShippingOption.name.indexOf('DHL') > -1; else abholung">
+      Lieferung innerhalb von 2-3 Tagen
+    </ng-container>
+    <ng-template #abholung>
+      Abholbereit innerhalb von 1 Tag
+    </ng-template>
+  </div>
 </div>
 
 <div class="row mt-3" *ngIf="selectedShippingOption && cartService.selectedBox && cartService.products.length >= cartService.selectedBox.minNumberProducts">
   <div class="col-12">
-    <div class=" alert alert-secondary">
-      Bitte gib die Rechnungs-und Versandadresse beim Bezahlen an.
+    <div class="alert alert-secondary text-center">
+      Bitte wähle eine Zahlungsmethode und gib bei der Bezahlung deine Rechnungs-und <b>Versandadresse</b> an.
     </div>
   </div>
 </div>
 
+<div class="row" *ngIf="selectedShippingOption && cartService.selectedBox && cartService.products.length >= cartService.selectedBox.minNumberProducts">
+  <div class="col-12">
+    <h3 class="text-center">
+      Preis: {{selectedShippingOption.price.toString().replace('.', ',')}} EUR
+    </h3>
+  </div>
+</div>
 <div class="row">
   <div class="col-6">
     <app-selected-products></app-selected-products>
   </div>
   <div class="col-6">
-    <div class="mt-5 text-center" *ngIf="selectedShippingOption && cartService.selectedBox && cartService.products.length >= cartService.selectedBox.minNumberProducts">
-      <h3>
-        Preis: {{selectedShippingOption.price.toString().replace('.', ',')}} EUR
-      </h3>
+    <div class="mt-1 text-center" *ngIf="selectedShippingOption && cartService.selectedBox && cartService.products.length >= cartService.selectedBox.minNumberProducts">
       <div>
-        <app-paypal></app-paypal>
+        <app-paypal [selectedShippingOption]="selectedShippingOption" ></app-paypal>
       </div>
     </div>
   </div>

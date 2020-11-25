@@ -1,14 +1,14 @@
-<div class="open-box mt-5">
+<div class="open-box mt-1">
   <div class="text-center" *ngIf="cartService.products as products">
     <div *ngIf="products.length > 0; else noProducts">
       Deine Box enthält:
-      <div class="text-center" *ngFor="let product of products">
+      <div class="" *ngFor="let product of products">
         <img src="assets/{{product.thumb}}"> <span class="font-weight-bold">{{product.name}}</span>
         <div class="small" *ngIf="product.selectedProductVariation">
           {{product.selectedProductVariation.name}}
         </div>
       </div>
-      <div class="text-center">
+      <div class="">
         <img src="assets/{{donationProject.thumb}}">
         <span class="font-weight-bold">{{cartService.calculateDonation()}} EUR Spende</span>
       </div>

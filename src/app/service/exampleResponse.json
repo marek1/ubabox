@@ -1,0 +1,208 @@
+{
+  'create_time': '2020-11-25T11:45: 47Z',
+  'update_time': '2020-11-25T11: 47:32Z',
+  'id': '8K886577XL271825X',
+  'intent': 'CAPTURE',
+  'status': 'COMPLETED',
+  'payer': {
+    'email_address': 'mail2marek-buyer@gmail.com',
+    'payer_id': 'UP68EAWWU7NFQ',
+    'address': {
+      'country_code': 'US'
+    },
+    'name': {
+      'given_name': 'test',
+      'surname': 'buyer'
+    }
+  },
+  'purchase_units': [
+    {
+      'description': 'Kaffee aus Berlin',
+      'reference_id': 'default',
+      'amount': {
+        'value': '30.00',
+        'currency_code': 'USD',
+        'breakdown': {
+          'item_total': {
+            'value': '30.00',
+            'currency_code': 'USD'
+          },
+          'shipping': {
+            'value': '0.00',
+            'currency_code': 'USD'
+          },
+          'handling': {
+            'value': '0.00',
+            'currency_code': 'USD'
+          },
+          'insurance': {
+            'value': '0.00',
+            'currency_code': 'USD'
+          },
+          'shipping_discount': {
+            'value': '0.00',
+            'currency_code': 'USD'
+          }
+        }
+      },
+      'payee': {
+        'email_address': 'mail2marek-facilitator@gmail.com',
+        'merchant_id': '7S425KMBLMX22'
+      },
+      'items': [
+        {
+          'name': 'Kaffee aus Berlin',
+          'unit_amount': {
+            'value': '8.00',
+            'currency_code': 'USD'
+          },
+          'tax': {
+            'value': '0.00',
+            'currency_code': 'USD'
+          },
+          'quantity': '1',
+          'sku': 'Kaffee aus Berlin'
+        },
+        {
+          'name': 'Jutebeutel aus Berlin',
+          'unit_amount': {
+            'value': '8.00',
+            'currency_code': 'USD'
+          },
+          'tax': {
+            'value': '0.00',
+            'currency_code': 'USD'
+          },
+          'quantity': '1',
+          'sku': 'Jutebeutel aus Berlin'
+        },
+        {
+          'name': 'Schokolade aus Berlin',
+          'unit_amount': {
+            'value': '5.00',
+            'currency_code': 'USD'
+          },
+          'tax': {
+            'value': '0.00',
+            'currency_code': 'USD'
+          },
+          'quantity': '1',
+          'sku': 'Schokolade aus Berlin'
+        },
+        {
+          'name': 'Spende',
+          'unit_amount': {
+            'value': '2.00',
+            'currency_code': 'USD'
+          },
+          'tax': {
+            'value': '0.00',
+            'currency_code': 'USD'
+          },
+          'quantity': '1',
+          'sku': 'Spende'
+        },
+        {
+          'name': 'Zahlungsgebühr',
+          'unit_amount': {
+            'value': '1.10',
+            'currency_code': 'USD'
+          },
+          'tax': {
+            'value': '0.00',
+            'currency_code': 'USD'
+          },
+          'quantity': '1',
+          'sku': 'Zahlungsgebühr'
+        },
+        {
+          'name': 'Versandgebühr',
+          'unit_amount': {
+            'value': '3.79',
+            'currency_code': 'USD'
+          },
+          'tax': {
+            'value': '0.00',
+            'currency_code': 'USD'
+          },
+          'quantity': '1',
+          'sku': 'Versandgebühr'
+        },
+        {
+          'name': 'Bearbeitungsgebühr',
+          'unit_amount': {
+            'value': '2.11',
+            'currency_code': 'USD'
+          },
+          'tax': {
+            'value': '0.00',
+            'currency_code': 'USD'
+          },
+          'quantity': '1',
+          'sku': 'Bearbeitungsgebühr'
+        }
+      ],
+      'shipping': {
+        'name': {
+          'full_name': 'Marek Sonnabend'
+        },
+        'address': {
+          'address_line_1': 'Torellstrasse',
+          'admin_area_2': 'Berlin',
+          'postal_code': '10243',
+          'country_code': 'DE'
+        }
+      },
+      'payments': {
+        'captures': [
+          {
+            'status': 'COMPLETED',
+            'id': '58Y320804A9828845',
+            'final_capture': true,
+            'create_time': '2020-11-25T11: 47: 32Z',
+            'update_time': '2020-11-25T11: 47: 32Z',
+            'amount': {
+              'value': '30.00',
+              'currency_code': 'USD'
+            },
+            'seller_protection': {
+              'status': 'ELIGIBLE',
+              'dispute_categories': [
+                'ITEM_NOT_RECEIVED',
+                'UNAUTHORIZED_TRANSACTION'
+              ]
+            },
+            'links': [
+              {
+                'href': 'https: //api.sandbox.paypal.com/v2/payments/captures/58Y320804A9828845',
+                'rel': 'self',
+                'method': 'GET',
+                'title': 'GET'
+              },
+              {
+                'href': 'https://api.sandbox.paypal.com/v2/payments/captures/58Y320804A9828845/refund',
+                'rel': 'refund',
+                'method': 'POST',
+                'title': 'POST'
+              },
+              {
+                'href': 'https://api.sandbox.paypal.com/v2/checkout/orders/8K886577XL271825X',
+                'rel': 'up',
+                'method': 'GET',
+                'title': 'GET'
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  'links': [
+    {
+      'href': 'https://api.sandbox.paypal.com/v2/checkout/orders/8K886577XL271825X',
+      'rel': 'self',
+      'method': 'GET',
+      'title': 'GET'
+    }
+  ]
+}
