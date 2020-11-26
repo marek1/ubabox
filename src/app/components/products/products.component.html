@@ -1,0 +1,26 @@
+<div class="text-center">
+  <div class="overflow-auto">
+    <div class="box"
+         *ngFor="let product of productVariations">
+      <div class="card">
+        <img class="card-img-top" src="assets/{{product.img}}" alt="Card image cap">
+        <div class="card-body">
+          <h5 class="card-title">{{product.name}}</h5>
+          <div class="card-text">
+          
+            {{product.description}}
+            <div class="small" *ngIf="product.producer">
+              hergestellt von
+              <span *ngIf="product.producerUrl"><a href="{{product.producerUrl}}" target="_blank">{{product.producer}}</a></span>
+              <span *ngIf="!product.producerUrl">{{product.producer}}</span>
+            </div>
+            <div class="small" *ngIf="product.producer">
+              verkauft von
+              <span *ngIf="product.sellerUrl"><a href="{{product.sellerUrl}}" target="_blank">{{product.seller}}</a></span>
+              <span *ngIf="!product.sellerUrl">{{product.seller}}</span>
+            </div>
+          </div>
+        </div>
+    </div>
+  </div>
+</div>

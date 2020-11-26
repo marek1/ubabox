@@ -115,7 +115,7 @@ export class CartService {
       full_name: data.payer.name.given_name + ' ' + data.payer.name.surname,
       address: Object.values(data.purchase_units[0].shipping.address).join(' '),
       items: data.purchase_units[0].items.filter(x => x.name !== PAYMENT_FEE &&
-        x.name !== SHIPPING_FEE && x.name !== HANDLING_FEE).join(', '),
+        x.name !== SHIPPING_FEE && x.name !== HANDLING_FEE).map(x => x.name).join(', '),
       shipping: data.purchase_units[0].items.filter(x => x.name === SHIPPING_FEE).length > 0 ? 'Versand' : 'Abholung'
     }).subscribe(() => console.log('sent'));
   }

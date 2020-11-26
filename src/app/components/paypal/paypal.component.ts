@@ -1,8 +1,9 @@
-import { AfterViewInit, Component, Input, OnChanges, OnInit, SimpleChange, SimpleChanges } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, SimpleChange, SimpleChanges } from '@angular/core';
 import { CartService } from '../../service/cart.service';
 import { Product } from '../../data/products';
 import { ShippingOption, ShippingOptions } from '../../data/shippingOptions';
 import { currencyCode, DONATION, HANDLING_FEE, PAYMENT_FEE, SHIPPING_FEE } from '../../data/global';
+import { AlertService } from '../../service/alert.service';
 
 @Component({
   selector: 'app-paypal',
@@ -12,7 +13,8 @@ import { currencyCode, DONATION, HANDLING_FEE, PAYMENT_FEE, SHIPPING_FEE } from 
 export class PaypalComponent implements OnInit, OnChanges {
 
   @Input() selectedShippingOption: ShippingOption;
-  constructor(public cartService: CartService) { }
+  constructor(public cartService: CartService,
+              public alertService: AlertService) { }
 
   ngOnInit() {
 
@@ -35,6 +37,7 @@ export class PaypalComponent implements OnInit, OnChanges {
 
   initButtons(price: number) {
     const _cartService = this.cartService;
+    const _alertService = this.alertService;
     const description = _cartService.selectedBox.name;
     const _DONATION = DONATION;
     const _SHIPPING_FEE = SHIPPING_FEE;
@@ -118,9 +121,9 @@ export class PaypalComponent implements OnInit, OnChanges {
           // This function captures the funds from the transaction.
           return actions.order.capture().then(function(details) {
             // This function shows a transaction success message to your buyer.
-            _buttonContainer.innerHTML = 'Danke für deinen Einkauf. Wir haben dir eine E-Mail gesendet.';
-            _buttonContainer.className = 'alert alert-primary';
+            _alertService.setMessage('Danke für deinen Einkauf. Wir haben dir eine E-Mail gesendet.');
             _cartService.sendEmail(details);
+            _cartService.reset();
           });
         }
       }

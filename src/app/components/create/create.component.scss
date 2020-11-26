@@ -1,26 +1,4 @@
-.box {
-  display: inline-block;
-  margin: 10px 0;
-  width: 50%;
-  & .fixed {
-    background-color: grey;
-  }
-  & .selected {
-    background-color: lightgrey;
-  }
-  & .clickable {
-    cursor: pointer;
-  }
-  & .unavailable:not(.selected) {
-    opacity: 0.5;
-    background-color: white;
-    color: white;
-  }
-  img {
-    max-width: 50%;
-    margin: 10px auto;
-  }
-}
+
 
 .modal-backdrop {
   display: none;
@@ -39,10 +17,10 @@
   background-position: bottom;
 
   &.Kaffeeliebhaber {
-    background-image: url('/assets/kaffee.jpg');
+    background-image: url('https://imkiez.de/kiez-box/assets/kaffee.jpg');
   }
   &.Teeliebhaber {
-    background-image: url('/assets/tee.jpg');
+    background-image: url('https://imkiez.de/kiez-box/assets/tee.jpg');
   }
 }
 #opaque-header {

@@ -13,6 +13,7 @@ import { SelectedProductsComponent } from './components/selected-products/select
 import { AddressFormComponent } from './components/address-form/address-form.component';
 import { ProductVariationComponent } from './components/product-variation/product-variation.component';
 import { HttpClientModule } from '@angular/common/http';
+import { ProductsComponent } from './components/products/products.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { HttpClientModule } from '@angular/common/http';
     PaypalComponent,
     SelectedProductsComponent,
     AddressFormComponent,
-    ProductVariationComponent
+    ProductVariationComponent,
+    ProductsComponent
   ],
   imports: [
     BrowserModule,

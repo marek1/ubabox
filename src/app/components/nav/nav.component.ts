@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ROUTE_CART } from '../../routes';
+import { ROUTE_CART, ROUTE_PRODUCTS } from '../../routes';
 import { CartService } from '../../service/cart.service';
 
 @Component({
@@ -10,6 +10,7 @@ import { CartService } from '../../service/cart.service';
 export class NavComponent implements OnInit {
 
   public ROUTE_CART = ROUTE_CART;
+  public ROUTE_PRODUCTS = ROUTE_PRODUCTS;
   constructor(public cartService: CartService) {
 
   }

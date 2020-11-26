@@ -13,7 +13,32 @@ img {
     max-width: 50%;
   }
 }
-
+.container {
+  max-width: 100%;
+}
+.box {
+  display: inline-block;
+  margin: 10px 0;
+  width: 50%;
+  & .fixed {
+    background-color: grey;
+  }
+  & .selected {
+    background-color: lightgrey;
+  }
+  & .clickable {
+    cursor: pointer;
+  }
+  & .unavailable:not(.selected) {
+    opacity: 0.5;
+    background-color: white;
+    color: white;
+  }
+  img {
+    max-width: 50%;
+    margin: 10px auto;
+  }
+}
 .active {
   background-color: #39ae64 !important;
 }

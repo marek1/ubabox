@@ -1,4 +1,7 @@
 <app-nav></app-nav>
+<div class="alert alert-success" role="alert" *ngIf="alertService.message">
+  {{alertService.message}}
+</div>
 <div class="container-fluid">
   <router-outlet></router-outlet>
 </div>
