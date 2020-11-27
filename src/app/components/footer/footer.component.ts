@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ROUTE_PRODUCTS } from '../../routes';
 
 @Component({
   selector: 'app-footer',
@@ -7,6 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FooterComponent implements OnInit {
 
+  public ROUTE_PRODUCTS = ROUTE_PRODUCTS;
   constructor() { }
 
   ngOnInit() {
