@@ -1,7 +1,7 @@
 <div id="teaser-img" class="position-relative overflow-hidden text-center bg-light">
   <div class="col-md-12 p-lg-5 mx-auto my-5" (click)="goToPage()">
     <div id="opaque-header">
-      <h1 class="display-4 font-weight-normal">Unterstüze deinen Kiez</h1>
+      <h1 class="display-4 font-weight-normal">Unterstütze deinen Berliner Kiez</h1>
       <p class="lead font-weight-normal">Mit einer Geschenkbox, die Produkte aus dem Kiez enthält. Schon für
         <span *ngFor="let shippingOption of shippingOptions; let i = index">
           <b>{{shippingOption.price.toString().replace('.', ',') }} EUR</b> bei {{shippingOption.name}}
